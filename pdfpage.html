@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Letter</title>
+  <!-- Import DotGothic16 font from Google Fonts -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap">
+  <style>
+    /* Apply DotGothic16 font to all text */
+    body, input, button, p {
+      font-family: 'DotGothic16', sans-serif;
+    }
+
+    /* Sparkle animation */
+    @keyframes sparkle {
+      0% { color: #FF0000; }
+      20% { color: #FF8000; }
+      40% { color: #FFFF00; }
+      60% { color: #00FF00; }
+      80% { color: #00FFFF; }
+      100% { color: #0000FF; }
+    }
+
+    /* Apply sparkle animation to the title */
+    h1 {
+      animation: sparkle 2s infinite alternate;
+    }
+  </style>
+</head>
+<body>
+  <h1>You have made it through the end! :)</h1>
+  <p>Please enter the password to view the PDF:</p>
+  <form id="passwordForm">
+    <input type="password" id="passwordInput" placeholder="Enter password">
+    <button type="button" onclick="checkPassword()">Submit</button>
+    <p id="hint">Hint: Your birthday (mmdd)</p>
+    <p id="errorMessage" style="color: red; display: none;">Incorrect password. Please try again.</p>
+  </form>
+
+  <div id="pdfContainer" style="display: none;">
+    <!-- PDF Viewer -->
+    <embed src="C:/Users/amyav/Documents/PersonalForFun/githubpage/letter_ahsoobot.pdf" type="application/pdf" width="100%" height="600px" />
+  </div>
+
+  <script>
+    // Function to check password
+    function checkPassword() {
+      var password = document.getElementById("passwordInput").value;
+      var hint = "1130"; // Change this to your password
+
+      if (password === hint) {
+        document.getElementById("passwordForm").style.display = "none";
+        document.getElementById("pdfContainer").style.display = "block";
+      } else {
+        document.getElementById("errorMessage").style.display = "block";
+      }
+    }
+
+    // Add event listener for Enter key press
+    document.getElementById("passwordInput").addEventListener("keypress", function(event) {
+      if (event.key === "Enter") {
+        event.preventDefault(); // Prevent default form submission behavior
+        checkPassword(); // Call function to check password
+      }
+    });
+  </script>
+</body>
+</html>
